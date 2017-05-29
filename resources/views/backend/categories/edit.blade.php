@@ -261,7 +261,7 @@
                         <div class="tabbable">
                             <ul class="nav nav-tabs" id="myTab2">
                                 @foreach($langs as $lang)
-                                    <li @if(($lang->lang) == 'ru') class="active" @endif >
+                                    <li @if(($lang->lang) == 'ua') class="active" @endif >
                                         <a data-toggle="tab" href="#{{$lang->lang}}">{{$lang->lang}}</a>
                                     </li>
                                 @endforeach
@@ -272,7 +272,7 @@
 
                             @foreach($langs as $lang)
 
-                                <div id="{{$lang->lang}}" @if(($lang->lang) == 'ru') class="tab-pane in active" @else class="tab-pane" @endif>
+                                <div id="{{$lang->lang}}" @if(($lang->lang) == 'ua') class="tab-pane in active" @else class="tab-pane" @endif>
 
                                     <div class="control-group">
                                         <label class="control-label" for="form-field-3">{{ trans('backend.title_category') }}</label>

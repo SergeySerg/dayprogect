@@ -14,9 +14,9 @@ class Translate extends Model {
         }
 /*        if ($lang == 'ua')
             $field = $pieces[0];*/
-        if ($lang == 'ru')
-            $field = $pieces[0];
         if ($lang == 'ua')
+            $field = $pieces[0];
+        if ($lang == 'en')
             $field = $pieces[1];
         return $field;
     }
@@ -33,9 +33,9 @@ class Translate extends Model {
             }
         /*  if ($lang == 'ua')
                 $field = $pieces[0];*/
-            if ($lang == 'ru')
-                $field = $pieces[0];
             if ($lang == 'ua')
+                $field = $pieces[0];
+            if ($lang == 'en')
                 $field = $pieces[1];
             return $field;
         }
