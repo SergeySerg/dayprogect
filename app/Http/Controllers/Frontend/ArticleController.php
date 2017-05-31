@@ -31,9 +31,9 @@ class ArticleController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index($lang, $type = 'main')
+	public function index($lang)
 	{
-
+//dd($type);
 		/*$static_page = Category::where('link', $type)
 			->first()
 			->articles()
@@ -43,7 +43,7 @@ class ArticleController extends Controller {
 		//dd($type);
 		//dump($news);
 		//dd($video->category()->first()->active);
-		return view('frontend.'. $type);
+		return view('ws-app');
 
 	}
 
@@ -55,6 +55,7 @@ class ArticleController extends Controller {
 	 */
 	public function show($lang, $type, $id)
 	{
+		//dd('23w2');
 		/*$static_page = Category::where('link', $type)
 		->first()
 		->articles()

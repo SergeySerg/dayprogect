@@ -1,18 +1,15 @@
 @extends('ws-app')
 @section('content')
     @if( count($company) !== 0 AND $categories_data['company']->active == 1)
-        <div class="container">
-        <div class="row">
-            <div class="content-section">
-                <div class="col-md-12">
-                    <div class="column">
-                        <h1 class="title section-title section-title_content">{{ $company->getTranslate('title') }}</h1>
-                        {!! $company->getTranslate('description') !!}
-                    </div>
-                </div>
+        <div id="about" class="mob-block-content mob-block_about">
+            <h2 class="mob-block_header mob-block_header-about">About us</h2>
+            <div class="mob-about_desc">
+                <p>День, який випромінює світло і тепло. День, який приносить задоволення.</p>
+                <p>Це все ДЕНЬ project - проект вашого простору, в якому хочеться</p>
+                <p>прокидатися, працювати, відпочивати.</p>
+                <p>Функціональне, комфортне, практичне рішення вашого інтер'єру.</p>
+                <p>Ми команда професіоналів, яка розуміє ваші потреби і втілює їх в життя.</p>
             </div>
         </div>
-    </div>
     @endif
-    @include('frontend.worth')
 @endsection

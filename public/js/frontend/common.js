@@ -1,302 +1,235 @@
 $(function(){
 
-/***********set project pop-up height*************/
-    var windowHeight = $(window).height() * 0.9;
-    $('.project-popup_wrap').css({'height' : windowHeight + 'px'});
-/***********END set project pop-up height*************/
+    var windowHeight = $( window ).height();
+    var windowWidth = $( window ).width();
+    if($('div').is('.content')){
+        var marTop = +($('.content').css('height').slice(0,-2));
+    };
+    var hoverTrigger = 1;
+    var projectId;
 
-/***********setting on main*************/
-    $(".owl-carousel").owlCarousel({
-        autoWidth:true,
-        items:4,
-        itemsDesktop : [1199,4],
-        itemsDesktopSmall : [980,3],
-        itemsTablet: [768,2],
-        itemsTabletSmall: false,
-        itemsMobile : [479,1],
-        nav:false,
-        loop: true,
-        autoPlay: 4000,
-        dots : false
+/***********Trigger for scroll page or item in gallery by mouse wheel*************/
+/*
+    $('.r-carousel-wrap').hover(
+        function () {
+            hoverTrigger = 0;
+        },
+        function () {
+            hoverTrigger = 1;
+        }
+    );
+*/
+/***********END trigger for scroll page or item in gallery by mouse wheel*************/
+
+/***********Function for scroll page*************/
+    function scrollPage(pageOld,UpOrDown) {
+        if(UpOrDown == 'Up'){
+            var pageNum = +pageOld - 1;
+            if(pageNum == 1){
+                $('.arrow-up').css({'display': 'none'});
+            };
+            $('.arrow-down').css({'display':'block'});
+        };
+        if(UpOrDown == 'Down'){
+            var pageNum = +pageOld + 1;
+            if(pageNum == 4){
+                $('.arrow-down').css({'display': 'none'});
+            };
+            $('.arrow-up').css({'display':'block'});
+        };
+        $('[data-page-num]').removeClass('active');
+        $('body').find('[data-page-num=' + pageNum + ']').addClass('active');
+        $('.content-wrap').css({'margin-top' : - marTop * (pageNum - 1)});
+        $('.r-carousel-wrap').css({'opacity':0,'z-index':-1});
+        $('.project-item').show();
+    };
+/***********END function for scroll page*************/
+
+/***********Function for scroll-down gallery item*************/
+    function scrollGalleryDown() {
+        $('#project-carousel-' + projectId).find('.owl-next').trigger('click');
+        if($('#project-carousel-' + projectId + ' .owl-item:last-child').hasClass('active')){
+            $('.arrow-gallery-down').hide();
+        } else{
+            $('.arrow-gallery-down').show();
+        }
+        if($('#project-carousel-' + projectId + ' .owl-item:not(first-child)').hasClass('active')){
+            $('.arrow-gallery-up').show();
+        };
+    };
+/***********END function for scroll-down gallery item*************/
+
+/***********Function for scroll-up gallery item*************/
+    function scrollGalleryUp() {
+        $('#project-carousel-' + projectId).find('.owl-prev').trigger('click');
+        if($('#project-carousel-' + projectId + ' .owl-item:first-child').hasClass('active')){
+            $('.arrow-gallery-up').hide();
+        };
+        if($('#project-carousel-' + projectId + ' .owl-item:not(last-child)').hasClass('active')){
+            $('.arrow-gallery-down').show();
+        };
+    };
+/***********END function for scroll-up gallery item*************/
+
+/***********height screen*************/
+    $('.mob-block_contact').css({height : windowHeight + 'px'});
+    $('.mob-block_about').css({height : (windowHeight - $('.mob-header').css('height').slice(0,-2)) + 'px'});
+    $('.header, .footer').css({height : (windowHeight - marTop)/2 + 'px'});
+    $('.content').css({'top' : (windowHeight - marTop)/2 + 'px'});
+    $('.sidebar_right_wrap').css({'bottom' : (windowHeight - marTop)/2 + 'px'});
+    $('nav').css({width : windowHeight + 'px'});
+/***********END height screen*************/
+
+/***********Navigation menu and click on logo*************/
+    $('.nav a, .logo').on("click", function (e) {
+        hoverTrigger = 1;
+        $('.project-item').show();
+        $('.r-carousel-wrap').css({'opacity':0,'z-index':-1});  // hide all gallery
+        $('.arrow').show();                                     //show arrow for page pagination
+        $('.arrow-gallery').hide();                             //hide arrow for img pagination in gallery
+        $('[data-page-num]').removeClass('active');
+        var pageNum = $(this).attr('data-page-num');
+        if(pageNum == 1){
+            $('.arrow-up').css({'display': 'none'});
+        } else {
+            $('.arrow-up').css({'display': 'block'});
+        };
+        if(pageNum == 4){
+            $('.arrow-down').css({'display': 'none'});
+        } else {
+            $('.arrow-down').css({'display': 'block'});
+        };
+        $('body').find('[data-page-num=' + pageNum + ']').addClass('active');
+        $('.content-wrap').css({'margin-top' : - marTop * (pageNum - 1)});
+        e.preventDefault();
     });
-/***********END setting on main*************/
+/***********END navigation menu and click on logo*************/
 
-/***********setting for licenses*************/
-    $('.flex-gallery').each(function(){
-        $(this).unitegallery({
-            gallery_theme: "tilesgrid",
-            gallery_width:"100%",              //gallery width
-            grid_space_between_cols:15,
-            grid_space_between_rows:5,
-            grid_space_between_mobile:0,
-            tile_enable_border:false,
-            tile_enable_shadow:false,
-            grid_padding:0,
-            tile_width: 255,						//tile width
-            tile_height: 365,
-            grid_num_rows:10
+/***********Paggination page*************/
+    $('.arrow-up').on("click", function () {
+        var pageOld = $('body').find('.nav_item.active').attr('data-page-num');
+        scrollPage(pageOld, 'Up');
+    });
+
+    $('.arrow-down').on("click", function () {
+        var pageOld = $('body').find('.nav_item.active').attr('data-page-num');
+        scrollPage(pageOld, 'Down');
+    });
+
+    /***********Paggination by mouse wheel*************/
+    $('body').bind('mousewheel', function(e){
+        var pageOld = $('body').find('.nav_item.active').attr('data-page-num');
+        if(hoverTrigger == 1){  //scroll page
+            if((e.originalEvent.wheelDelta < 0) && pageOld <= 3) {
+                scrollPage(pageOld, 'Down');
+            };
+            if((e.originalEvent.wheelDelta > 0) && pageOld >= 2)  {
+                scrollPage(pageOld, 'Up');
+            };
+            return false;
+        } else {    //scroll gallery item
+            if((e.originalEvent.wheelDelta < 0) && pageOld <= 3) {
+                scrollGalleryDown();
+            };
+            if((e.originalEvent.wheelDelta > 0) && pageOld >= 2)  {
+                scrollGalleryUp();
+            };
+            return false;
+        }
+    });
+    /***********END paggination by mouse wheel*************/
+
+/***********END paggination*************/
+
+/***********Show gallery*************/
+    $('.project-item').on('click', function () {
+        hoverTrigger = 0;
+        $('.project-item').hide();
+        projectId = $(this).attr('data-id');
+        $('.content').find('#project-carousel-' + projectId).css({'opacity':1,'z-index':1});
+        $('.arrow-back, .arrow-gallery').show();
+        $('.arrow').hide();
+        if($('#project-carousel-' + projectId + ' .owl-item:first-child').hasClass('active')){
+            $('.arrow-gallery-up').hide();
+        };
+        $('.arrow-gallery-down').on('click', function () {
+            scrollGalleryDown();
+        });
+        $('.arrow-gallery-up').on('click', function () {
+            scrollGalleryUp();
         });
     });
-/***********END setting for licenses*************/
 
-/***********project pop-up*************/
-    $('.show-project-item').click(function(event){
-        var project_id = $(this).attr('data-project-id');
-        $('#overlay').fadeIn(400,
-            function(){
-                // console.log(service_id);
-                $('[data-popup-id='+project_id+']')
-                    .css('display', 'block')
-                    .animate({opacity: 1, top: '45%'}, 200);
-            });
-        //Popup advice ClOSE
-        $('#overlay').click( function(){
-            $('[data-popup-id='+project_id+']')
-                .animate({opacity: 0, top: '45%'}, 200,
-                    function(){
-                        $(this).css('display', 'none');
-                        $('#overlay').fadeOut(400);
-                    }
-                );
-        });
-        $(document).keydown( function(e) {
-            if (e.keyCode === 27) {
-                $('[data-popup-id='+project_id+']')
-                    .animate({opacity: 0, top: '45%'}, 200,
-                        function(){
-                            $(this).css('display', 'none');
-                            $('#overlay').fadeOut(400);
-                        }
-                    );
-                e.preventDefault();
-            }
-        });
-        event.preventDefault();
+    $('.arrow-back').on('click', function () {
+        hoverTrigger = 1;
+        $('.project-item').show();
+        $('.r-carousel-wrap').css({'opacity':0,'z-index':-1});
+        $(this).hide();
+        $('.arrow').show();
+        $('.arrow-gallery').hide();
     });
-/***********END project pop-up*************/
+/***********END show gallery*************/
 
-/***********vacantions pop-up*************/
-    $('.btn__blue-in-vacantion').click(function(event){
-        var vacantions_id = $(this).parent().attr('id');
-        $('#overlay').fadeIn(400,
-            function(){
-                $('[data-id=' + vacantions_id + ']')
-                    .css('display', 'block')
-                    .animate({opacity: 1, top: '45%'}, 200);
-            });
-        //Popup advice ClOSE
-        $('#overlay').click( function(){
-            $('[data-id=' + vacantions_id + ']')
-                .animate({opacity: 0, top: '45%'}, 200,
-                    function(){
-                        $(this).css('display', 'none');
-                        $('#overlay').fadeOut(400);
-                    }
-                );
-        });
-        $(document).keydown( function(e) {
-            if (e.keyCode === 27) {
-                $('[data-id=' + vacantions_id + ']')
-                    .animate({opacity: 0, top: '45%'}, 200,
-                        function(){
-                            $(this).css('display', 'none');
-                            $('#overlay').fadeOut(400);
-                        }
-                    );
-                e.preventDefault();
-            }
-        });
-        event.preventDefault();
+/***********Show gallery on mobile*************/
+    $('.mob-project-item').on('click', function () {
+        projectId = $(this).attr('data-id');
+        $('body').find('#mob-project-carousel-' + projectId).toggleClass('active');
     });
-/***********END vacantions pop-up*************/
-    
-/***********callback pop-up*************/
-    $('.callback').click(function(event){
-        $('#overlay').fadeIn(400,
-            function(){
-                $('#callback')
-                    .css('display', 'block')
-                    .animate({opacity: 1, top: '45%'}, 200);
-            });
-        //Popup advice ClOSE
-        $('#overlay').click( function(){
-            $('#callback')
-                .animate({opacity: 0, top: '45%'}, 200,
-                    function(){
-                        $(this).css('display', 'none');
-                        $('#overlay').fadeOut(400);
-                    }
-                );
-        });
-        $(document).keydown( function(e) {
-            if (e.keyCode === 27) {
-                $('#callback')
-                    .animate({opacity: 0, top: '45%'}, 200,
-                        function(){
-                            $(this).css('display', 'none');
-                            $('#overlay').fadeOut(400);
-                        }
-                    );
-                e.preventDefault();
-            }
-        });
-        event.preventDefault();
-    });
-/***********END callback pop-up*************/
 
-/***********project category tabs*************/
-
-    /*$('.project-btn-wrapper div:first-child .btn').addClass('btn__yellow');*/
-    $('.project-btn-wrapper .btn').click( function () {
-        var category_id = $(this).attr('data-category-id');
-        $('.project-btn-wrapper .btn').removeClass('btn__yellow');
-        $(this).addClass('btn__yellow');
-        $('.project-category').fadeOut(500);
-        $('.project-content').find('[data-project-category='+category_id+']').fadeIn(1000);
+    $('.mob-close-gallery').on('click', function () {
+        $(this).parent().toggleClass('active');
     });
-/***********END project category tabs*************/
+/***********END show gallery on mobile*************/
 
-/***********services category tabs*************/
-    $('.services-menu_item').click( function (e) {
-        var services_id = $(this).attr('data-services-id');
-        $('.services-menu_item').removeClass('active');
-        $(this).addClass('active');
-        $('.services-page-item').fadeOut(500);
-        $('.content-section').find('[data-services-item-id='+services_id+']').fadeIn(1000);
+/***********Adaptive menu*************/
+    $('.button-menu').click(function(){
+        $(this).toggleClass('active');
+        $('.mob-nav').toggleClass('active');
+        $('.button-menu .icon').toggleClass('menu-i').toggleClass('close');
     });
-/***********END services category tabs*************/
+/***********END adaptive menu*************/
 
 /**********scrollTo**************/
-    $(".vacantions-menu_item").click(function() {
-        var scrollId = $(this).attr('data-id');
+/*
+    $(".mob-nav li a").click(function(e) {
+        var scrollId = $(this).attr('data-scroll-id');
         $('html, body').animate({
             scrollTop: $("#" + scrollId).offset().top
-        }, 2000);
+        }, 1000);
+        $('.button-menu').trigger('click');
+        e.preventDefault();
     });
+*/
 /**********END scrollTo**************/
-
-/**********Transition to a specified service**************/
-    var hashId = window.location.hash.slice(1);
-    if(hashId != 0){
-        $('.services-menu-wrap').find('[data-services-id=' + hashId +']').trigger('click');
-    }
-/**********END transition to a specified service**************/
-
-    $('#menu-toggle-open').on('click', function () {
-        $('#nav-toggle').addClass('active');
-    });
-    $('#menu-toggle-close').on('click', function () {
-        $('#nav-toggle').removeClass('active');
-    });
-    /**********call-back popup**************/
-    $('#submit-send').on('click', function(event){
-        $('#submit-send').attr('disabled', true);
-        var data = new FormData($('form.callback')[0]);
-        var url = $( "input[name$='url']" ).val();
-        console.log(data);
-        $.ajax({
-            url: url,
-            method: 'POST',
-            processData: false,
-            contentType: false,
-            data: data,
-            dataType : "json",
-            success: function(data){
-                //console.info('Server response: ', data);
-                if(data.success){
-                    swal(trans['base.success'], "", "success");
-                    $(".callback").trigger("reset");
-                    $('#callback, #overlay').hide();
-                    $("#submit-send").attr('disabled', false);
-
-                }
-                else{
-                    swal(trans['base.error'], data.message, "error");
-                    $("#submit-send").attr('disabled', false);
-                }
-            },
-            error:function(data){
-                swal(trans['base.error']);
-                $("#submit-send").attr('disabled', false);
-                //  jQuery("#resume-form").trigger("reset");
-            }
-
+    
+/**********Center alignment img in mobile gallery**************/
+    $('img').load(function () {
+        $('.mob-gallery-item img').each(function () {
+            var imgHeight = $(this).height();
+            var imgMar = (windowHeight - imgHeight)/2;
+            $(this).css({'margin-top': imgMar + 'px'});
         });
-        event.preventDefault();
     });
-    /**********END call-back popup**************/
-    /**********call-back**************/
-    $('#send').on('click', function(event){
-        $('#send').attr('disabled', true);
-        var data = new FormData($('form#contact-callback')[0]);
-        var url = $( "input[name$='url']" ).val();
-        console.log(data);
-        $.ajax({
-            url: url,
-            method: 'POST',
-            processData: false,
-            contentType: false,
-            data: data,
-            dataType : "json",
-            success: function(data){
-                //console.info('Server response: ', data);
-                if(data.success){
-                    swal(trans['base.success'], "", "success");
-                    $("#contact-callback").trigger("reset");
-                    $("#send").attr('disabled', false);
-
-                }
-                else{
-                    swal(trans['base.error'], data.message, "error");
-                    $("#send").attr('disabled', false);
-                }
-            },
-            error:function(data){
-                swal(trans['base.error']);
-                $("#send").attr('disabled', false);
-                //  jQuery("#resume-form").trigger("reset");
-            }
-
+    $('.mob-gallery-item').css({'height': windowHeight + 'px','width': windowWidth + 'px'});
+    $('.mob-gallery-item img').css({'max-height': windowHeight + 'px','max-width': windowWidth + 'px'});
+/**********END center alignment img in mobile gallery**************/
+   
+    if(windowHeight <= 900 ||  windowWidth <= 1200){
+        $('.nav img').each(function () {
+            var imgSrc = $(this).attr('src').slice(0,-4) + '_min.png';
+            $(this).attr('src', imgSrc);
         });
-        event.preventDefault();
+    };
+
+/***********Owl-carousel*************/
+    $('.owl-carousel').owlCarousel({
+        items:1,
+        singleItem: true,
+        nav: true,
+        navText: "",
+        animateOut: "fadeOut",
+        animateIn: "fadeIn"
     });
-    /**********END call-back**************/
+/***********END owl-carousel*************/
 
-    /**********Vacancies**************/
-    $('.submit-vacantion').on('click', function(event){
-        $('.submit-vacantion').attr('disabled', true);
-        var vacancy_id = $(this).attr('id');
-        console.log(vacancy_id);
-        var data = new FormData($('form#vacantion-form-' + vacancy_id)[0]);
-        console.log(data);
-        $.ajax({
-            url: '',
-            method: 'POST',
-            processData: false,
-            contentType: false,
-            data: data,
-            dataType : "json",
-            success: function(data){
-                //console.info('Server response: ', data);
-                if(data.success){
-                    swal(trans['base.success'], "", "success");
-                    $("#contact-callback").trigger("reset");
-                    $(".submit-vacantion").attr('disabled', false);
-
-                }
-                else{
-                    swal(trans['base.error'], data.message, "error");
-                    $(".submit-vacantion").attr('disabled', false);
-                }
-            },
-            error:function(data){
-                swal(trans['base.error']);
-                $(".submit-vacantion").attr('disabled', false);
-                //  jQuery("#resume-form").trigger("reset");
-            }
-
-        });
-        event.preventDefault();
-    });
-    /**********\Vacancies**************/
 });

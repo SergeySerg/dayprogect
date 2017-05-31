@@ -37,9 +37,9 @@ class FrontendInit {
 
 		//share type
 		$type = $request->type;
-		if(is_null($request->type)){
+		/*if(is_null($request->type)){
 			$type = 'main';
-		}
+		}*/
 
 		//get all Category
 		$categories = Category::all();
@@ -60,7 +60,6 @@ class FrontendInit {
 		}
 		Debugbar::addMeasure('time', LARAVEL_START, microtime(true));
 		//dd($categories_data->article->get());
-
 
 		// Share to views global template variables
 		view()->share('langs', Lang::all());
