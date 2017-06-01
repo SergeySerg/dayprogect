@@ -12,15 +12,13 @@ return [
 	| you want to customize your views to better match your application.
 	|
 	*/
-	'address' => 'Адреса',
-	'telephone' => 'Телефон',
-	'callback' => 'замовити дзвінок',
-
 	'main' => 'Головна',
-	'company' => 'Про компанію',
+	'company' => 'Про нас',
 	'services' => 'Послуги',
 	'project' => 'Проекти',
-	'careers' => 'Вакансії',
+	'subject' => 'Предмети',
+	'menu' => 'Меню',
+	'tel' => 'тел.',
 	'license' => 'Лицензії',
 	'contacts' => 'Контакти',
 	'more' => 'детальніше',

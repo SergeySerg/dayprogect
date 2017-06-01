@@ -25,6 +25,8 @@
 	<link href="{{ asset('/css/frontend/main.css') }}?ver={{ $version }}" rel="stylesheet" type="text/css" media="all" />
 	{{-- /CSS --}}
 	{{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>--}}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
 </head>
 
 <body>
@@ -32,10 +34,9 @@
 	<header class="header clearfix">
 		<div class="wrapper">
 			<ul class="lang">
-				<li @if(App::getLocale() == 'en') class="lang_item"@endif><a href="{{str_replace(url(App::getLocale()), url('en'), Request::url())}}">eng</a></li>
-				<li @if(App::getLocale() == 'ua') class="lang_item"@endif><a class="active" href="{{str_replace(url(App::getLocale()), url('ua'), Request::url())}}">ukr</a></li>
-			</ul>
-			<a href="#" class="logo" data-page-num="2"><img src="/img/frontend/logo.png" alt=""></a>
+				<li class="mob-lang_item"><a @if(App::getLocale() == 'en')class="active"@endif href="{{str_replace(url(App::getLocale()), url('en'), Request::url())}}">eng</a></li>
+				<li class="mob-lang_item"><a  @if(App::getLocale() == 'ua')class="active"@endif href="{{str_replace(url(App::getLocale()), url('ua'), Request::url())}}">ukr</a></li>			</ul>
+			<a href="#" class="logo" data-page-num="2"><img src="{{ asset('/img/frontend/logo.png') }}" alt="Dayproject"></a>
 		</div>
 	</header>
 
@@ -44,165 +45,75 @@
 			<div class="block-content block_about">
 				<div class="about_desc">
 					<div class="about-info">
-						<p>День, який випромінює світло і тепло. День, який приносить задоволення.</p>
-						<p>Це все ДЕНЬ project - проект вашого простору, в якому хочеться</p>
-						<p>прокидатися, працювати, відпочивати.</p>
-						<p>Функціональне, комфортне, практичне рішення вашого інтер'єру.</p>
-						<p>Ми команда професіоналів, яка розуміє ваші потреби і втілює їх в життя.</p>
+						{!! $company->getTranslate('description') !!}
 					</div>
 				</div>
 			</div>
 			<div class="block-content block_project">
-				<div class="project-item" data-id="p1" style="background-image: url('/img/frontend/proekt_1/project_1_1.jpg');">
-					<div class="project-item_name">
-						<span class="project-item_name-text">Corea</span>
+				@foreach($project as $project_item)
+					<div class="project-item" data-id="p{{ $project_item->id }}" style="background-image: url('{{ asset( $project_item->getAttributeTranslate('Картинка проекта')) }}');">
+						<div class="project-item_name">
+							<span class="project-item_name-text">{{ $project_item->getTranslate('title') }}</span>
+						</div>
 					</div>
-				</div>
-				<div class="project-item" data-id="p2" style="background-image: url('/img/frontend/proekt_2/project_2_1.jpg');">
-					<div class="project-item_name">
-						<span class="project-item_name-text">Book</span>
-					</div>
-				</div>
-				<div class="project-item" data-id="p3" style="background-image: url('/img/frontend/proekt_3/project_3_1.jpg');">
-					<div class="project-item_name">
-						<span class="project-item_name-text">Book</span>
-					</div>
-				</div>
-				<div class="project-item" data-id="p4" style="background-image: url('/img/frontend/proekt_4/project_4_1.jpg');">
-					<div class="project-item_name">
-						<span class="project-item_name-text">Book</span>
-					</div>
-				</div>
-				<div id="project-carousel-p1" class="r-carousel-wrap">
+				@endforeach
+				@foreach($project as $project_item)
+					<div id="project-carousel-p{{ $project_item->id }}" class="r-carousel-wrap">
 					<div class="owl-carousel owl-theme">
-						<div class="gallery-item">
-							<img src="/img/frontend/proekt_1/project_1_1.jpg" alt="">
-						</div>
-						<div class="gallery-item">
-							<img src="/img/frontend/proekt_1/project_1_2.jpg" alt="">
-						</div>
-						<div class="gallery-item">
-							<img src="/img/frontend/proekt_1/project_1_3.jpg" alt="">
-						</div>
-						<div class="gallery-item">
-							<img src="/img/frontend/proekt_1/project_1_4.jpg" alt="">
-						</div>
-						<div class="gallery-item">
-							<img src="/img/frontend/proekt_1/project_1_5.jpg" alt="">
-						</div>
-						<div class="gallery-item">
-							<img src="/img/frontend/proekt_1/project_1_6.jpg" alt="">
-						</div>
-						<div class="gallery-item">
-							<img src="/img/frontend/proekt_1/project_1_7.jpg" alt="">
-						</div>
-						<div class="gallery-item">
-							<img src="/img/frontend/proekt_1/project_1_8.jpg" alt="">
-						</div>
+						@foreach($project_item->getImages() as $imgSrc)
+							<div class="gallery-item">
+								<img src="/{{ $imgSrc['full'] }}" alt="">
+							</div>
+						@endforeach
 					</div>
 				</div>
-				<div id="project-carousel-p2" class="r-carousel-wrap">
-					<div class="owl-carousel owl-theme">
-						<div class="gallery-item">
-							<img src="/img/frontend/proekt_2/project_2_1.jpg" alt="">
-						</div>
-						<div class="gallery-item">
-							<img src="/img/frontend/proekt_2/project_2_2.jpg" alt="">
-						</div>
-						<div class="gallery-item">
-							<img src="/img/frontend/proekt_2/project_2_3.jpg" alt="">
-						</div>
-						<div class="gallery-item">
-							<img src="/img/frontend/proekt_2/project_2_4.jpg" alt="">
-						</div>
-						<div class="gallery-item">
-							<img src="/img/frontend/proekt_2/project_2_5.jpg" alt="">
-						</div>
-						<div class="gallery-item">
-							<img src="/img/frontend/proekt_2/project_2_6.jpg" alt="">
-						</div>
-						<div class="gallery-item">
-							<img src="/img/frontend/proekt_2/project_2_7.jpg" alt="">
-						</div>
-						<div class="gallery-item">
-							<img src="/img/frontend/proekt_2/project_2_8.jpg" alt="">
-						</div>
-						<div class="gallery-item">
-							<img src="/img/frontend/proekt_2/project_2_9.jpg" alt="">
-						</div>
-						<div class="gallery-item">
-							<img src="/img/frontend/proekt_2/project_2_10.jpg" alt="">
-						</div>
-					</div>
-				</div>
-				<div id="project-carousel-p3" class="r-carousel-wrap">
-					<div class="owl-carousel owl-theme">
-						<div class="gallery-item">
-							<img src="/img/frontend/proekt_3/project_3_1.jpg" alt="">
-						</div>
-						<div class="gallery-item">
-							<img src="/img/frontend/proekt_3/project_3_2.jpg" alt="">
-						</div>
-						<div class="gallery-item">
-							<img src="/img/frontend/proekt_3/project_3_3.jpg" alt="">
-						</div>
-						<div class="gallery-item">
-							<img src="/img/frontend/proekt_3/project_3_4.jpg" alt="">
-						</div>
-						<div class="gallery-item">
-							<img src="/img/frontend/proekt_3/project_3_5.jpg" alt="">
-						</div>
-						<div class="gallery-item">
-							<img src="/img/frontend/proekt_3/project_3_6.jpg" alt="">
-						</div>
-						<div class="gallery-item">
-							<img src="/img/frontend/proekt_3/project_3_7.jpg" alt="">
-						</div>
-					</div>
-				</div>
-				<div id="project-carousel-p4" class="r-carousel-wrap">
-					<div class="owl-carousel owl-theme">
-						<div class="gallery-item">
-							<img src="/img/frontend/proekt_4/project_4_1.jpg" alt="">
-						</div>
-						<div class="gallery-item">
-							<img src="/img/frontend/proekt_4/project_4_2.jpg" alt="">
-						</div>
-						<div class="gallery-item">
-							<img src="/img/frontend/proekt_4/project_4_3.jpg" alt="">
-						</div>
-						<div class="gallery-item">
-							<img src="/img/frontend/proekt_4/project_4_4.jpg" alt="">
-						</div>
-						<div class="gallery-item">
-							<img src="/img/frontend/proekt_4/project_4_5.jpg" alt="">
-						</div>
-					</div>
-				</div>
+				@endforeach
 			</div>
-			<div class="block-content block_subject">
-				<div class="project-item" data-id="s1" style="background-image: url('/img/frontend/predmety_1/subject_1_1.jpg');">
-					<div class="project-item_name">
-						<span class="project-item_name-text">Towers</span>
-					</div>
-				</div>
-				<div id="project-carousel-s1" class="r-carousel-wrap">
-					<div class="owl-carousel owl-theme">
-						<div class="gallery-item">
-							<img src="/img/frontend/predmety_1/subject_1_1.jpg" alt="">
-						</div>
-						<div class="gallery-item">
-							<img src="/img/frontend/predmety_1/subject_1_2.jpg" alt="">
+			@if(count($subject) == 1)
+				<div class="block-content block_subject">
+					<div class="project-item" data-id="s1" style="background-image: url('{{ asset( $subject->getAttributeTranslate('Картинка предмета')) }}');">
+						<div class="project-item_name">
+							<span class="project-item_name-text">{{ $subject->getTranslate('title') }}</span>
 						</div>
 					</div>
+					<div id="project-carousel-s1" class="r-carousel-wrap">
+						<div class="owl-carousel owl-theme">
+							@foreach($subject->getImages() as $imgSrc)
+								<div class="gallery-item">
+									<img src="/{{ $imgSrc['full'] }}" alt="">
+								</div>
+							@endforeach
+						</div>
+					</div>
 				</div>
-			</div>
+			@else
+				<div class="block-content block_subject">
+					@foreach($subject as $subject_item)
+						<div class="project-item" data-id="p{{ $subject_item->id }}" style="background-image: url('{{ asset( $subject_item->getAttributeTranslate('Картинка предмета')) }}');">
+							<div class="project-item_name">
+								<span class="project-item_name-text">{{ $subject_item->getTranslate('title') }}</span>
+							</div>
+						</div>
+					@endforeach
+					@foreach($subject as $subject_item)
+						<div id="project-carousel-p{{ $subject_item->id }}" class="r-carousel-wrap">
+							<div class="owl-carousel owl-theme">
+								@foreach($subject_item->getImages() as $imgSrc)
+									<div class="gallery-item">
+										<img src="/{{ $imgSrc['full'] }}" alt="">
+									</div>
+								@endforeach
+							</div>
+						</div>
+					@endforeach
+				</div>
+			@endif
 			<div class="block-content block_contact">
 				<div class="contact_desc">
 					<div class="contact-info">
-						Київ, Україна <br>
-						тел.: +38 (096) 598 76 07 <br>
-						dayprojecton@gmail.com <br>
+						{{ $texts->get('address') }}<br>
+						{{trans('base.tel')}}: {{ $texts->get('telephone') }} <br>
+						{{ $texts->get('email') }}  <br>
 					</div>
 				</div>
 			</div>
@@ -212,8 +123,9 @@
 	<footer class="footer">
 		<div class="wrapper">
 			<ul class="soc">
-				<li class="soc_item"><a href="https://www.facebook.com/" target="_blank">Facebook</a></li>
-				<li class="soc_item"><a href="https://www.instagram.com/" target="_blank">Instagram</a></li>
+				@foreach($social as $social_item)
+					<li class="soc_item"><a href="{{ $social_item->getAttributeTranslate('Ссилка') }}" target="_blank">{{ $social_item->getTranslate('title') }}</a></li>
+				@endforeach
 			</ul>
 		</div>
 	</footer>
@@ -250,36 +162,29 @@
 	</div>
 </div>
 
-<div class="mob">
-
+<div class="mob mob-about-page">
 	<ul class="mob-nav">
-		<li><a href="index.html">Про нас</a></li>
-		<li><a href="project.html">Проекти</a></li>
-		<li><a href="subject.html">Предмети</a></li>
-		<li><a href="contact.html">Контакти</a></li>
+		<li><a href="/">{{ trans('base.company') }}</a></li>
+		<li><a href="/{{App::getLocale()}}/project">{{ trans('base.project') }}</a></li>
+		<li><a href="/{{App::getLocale()}}/subject">{{ trans('base.subject') }}</a></li>
+		<li><a href="/{{App::getLocale()}}/contact">{{ trans('base.contacts') }}</a></li>
 	</ul>
-	<div class="button-menu"><div class="menu-i icon"></div>MENU</div>
+	<div class="button-menu"><div class="menu-i icon"></div>{{ trans('base.menu') }}</div>
+	@if(Request::is('*/project'))
+		<div id="project" class="mob-block-content mob-block_project clearfix">
+	@endif
 	<div class="mob-header clearfix">
 		<ul class="mob-lang">
 			<li class="mob-lang_item"><a @if(App::getLocale() == 'en')class="active"@endif href="{{str_replace(url(App::getLocale()), url('en'), Request::url())}}">eng</a></li>
 			<li class="mob-lang_item"><a  @if(App::getLocale() == 'ua')class="active"@endif href="{{str_replace(url(App::getLocale()), url('ua'), Request::url())}}">ukr</a></li>
 		</ul>
-		<img src="/img/frontend/logo.png" alt="DayProject"></a>
+		<img src="{{ asset('/img/frontend/logo.png') }}" alt="DayProject"></a>
 	</div>
-	<div id="about" class="mob-block-content mob-block_about">
-		<h2 class="mob-block_header mob-block_header-about">About us</h2>
-		<div class="mob-about_desc">
-			<p>День, який випромінює світло і тепло. День, який приносить задоволення.</p>
-			<p>Це все ДЕНЬ project - проект вашого простору, в якому хочеться</p>
-			<p>прокидатися, працювати, відпочивати.</p>
-			<p>Функціональне, комфортне, практичне рішення вашого інтер'єру.</p>
-			<p>Ми команда професіоналів, яка розуміє ваші потреби і втілює їх в життя.</p>
-		</div>
-	</div>
+	@yield('content')
 
 </div>
 
-@yield('content')
+
 
 
 
@@ -295,12 +200,13 @@
 </script>
 {{--Файл переводов--}}
 {{-- JS --}}
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
 	<script src="{{ asset('/libs/jquery/dist/jquery.min.js') }}"></script>
-	<script src="{{ asset('/js/plugins/sweetalert.min.js') }}"></script>
-	<script src="{{ asset('/libs/owl-carousel-2/owl.carousel.js') }}"></script>
 	<script src="{{ asset('/js/frontend/common.js') }}?ver={{ $version }}"></script>
-	<script src="{{ asset('/libs/owl-carousel/owl.carousel.min.js') }}"></script>
+	<script src="{{ asset('/libs/owl-carousel-2/owl.carousel.js') }}"></script>
+	{{--<script src="{{ asset('/js/plugins/sweetalert.min.js') }}"></script>--}}
+
+
 
 
 {{-- JS --}}

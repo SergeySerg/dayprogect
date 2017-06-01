@@ -31,7 +31,7 @@ class ArticleController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index($lang)
+	public function index($lang, $type = 'company')
 	{
 //dd($type);
 		/*$static_page = Category::where('link', $type)
@@ -43,7 +43,7 @@ class ArticleController extends Controller {
 		//dd($type);
 		//dump($news);
 		//dd($video->category()->first()->active);
-		return view('ws-app');
+		return view('frontend.' . $type);
 
 	}
 

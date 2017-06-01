@@ -12,11 +12,17 @@ return [
 	| you want to customize your views to better match your application.
 	|
 	*/
-
+	'main' => 'Головна',
+	'company' => 'About us',
+	'project' => 'Projects',
+	'subject' => 'Subjects',
+	'contacts' => 'Contacts',
 	'about_us' => 'About us',
+	'menu' => 'Menu',
+	'tel' => 'tel.',
 	'prices' => 'Prices',
 	'download' => 'Download',
-	'contacts' => 'Contacts',
+
 	'our_benefits' => 'Our benefits',
 	'our_priced' => 'Our priced',
 	'home' => 'Home',

@@ -7,7 +7,7 @@
 
 html {
   height: 100%;
-  background: url("../img/frontend/body_bg.jpg") center no-repeat;
+  background: url("../../img/frontend/body_bg.jpg") center no-repeat;
   background-size: cover;
   background-position: left bottom; }
 
@@ -196,17 +196,17 @@ a {
     margin-bottom: 70px; }
   .arrow-up {
     top: 0;
-    background: url("../img/frontend/arrow_up.png") right center no-repeat; }
+    background: url("../../img/frontend/arrow_up.png") right center no-repeat; }
   .arrow-down {
     bottom: 0;
-    background: url("../img/frontend/arrow_down.png") right center no-repeat; }
+    background: url("../../img/frontend/arrow_down.png") right center no-repeat; }
   .arrow-back {
     display: none;
     float: right;
     width: 15px;
     height: 15px;
     margin-right: 5px;
-    background: url("../img/frontend/arrow_right.png") right center no-repeat;
+    background: url("../../img/frontend/arrow_right.png") right center no-repeat;
     margin-bottom: 70px;
     cursor: pointer; }
     .arrow-back_wrap {
@@ -229,10 +229,10 @@ a {
     margin-bottom: 70px; }
   .arrow-gallery-up {
     top: 0;
-    background: url("../img/frontend/arrow_up.png") right center no-repeat; }
+    background: url("../../img/frontend/arrow_up.png") right center no-repeat; }
   .arrow-gallery-down {
     bottom: 0;
-    background: url("../img/frontend/arrow_down.png") right center no-repeat; }
+    background: url("../../img/frontend/arrow_down.png") right center no-repeat; }
   .arrow-gallery.active {
     display: block; }
 
@@ -260,7 +260,7 @@ a {
   display: inline-block;
   width: 12px;
   height: 15px;
-  background: url("../img/frontend/arrow.png") right center no-repeat; }
+  background: url("../../img/frontend/arrow.png") right center no-repeat; }
 
 .page-num {
   display: none;
@@ -274,7 +274,7 @@ a {
 
 .block_about {
   display: table;
-  background: url("../img/frontend/about_bg.png") 50px top no-repeat; }
+  background: url("../../img/frontend/about_bg.png") 50px top no-repeat; }
 
 .about_desc {
   display: table-cell;
@@ -287,11 +287,11 @@ a {
 .block_project {
   position: relative;
   width: 100%;
-  background: url("../img/frontend/project_bg.png") 75% 35% no-repeat; }
+  background: url("../../img/frontend/project_bg.png") 75% 35% no-repeat; }
 
 .block_subject {
   width: 100%;
-  background: url("../img/frontend/subject_bg.png") 75% 60% no-repeat; }
+  background: url("../../img/frontend/subject_bg.png") 75% 60% no-repeat; }
 
 .project-item {
   display: table;
@@ -347,7 +347,7 @@ a {
 
 .block_contact {
   display: table;
-  background: url("../img/frontend/contact_bg.png") 60px top no-repeat; }
+  background: url("../../img/frontend/contact_bg.png") 60px top no-repeat; }
 
 .contact_desc {
   display: table-cell;
@@ -398,12 +398,12 @@ a {
       height: auto; }
   .arrow-up,
   .arrow-gallery-up {
-    background: url("../img/frontend/arrow_up_min.png") right center no-repeat; }
+    background: url("../../img/frontend/arrow_up_min.png") right center no-repeat; }
   .arrow-down,
   .arrow-gallery-down {
-    background: url("../img/frontend/arrow_down_min.png") right center no-repeat; }
+    background: url("../../img/frontend/arrow_down_min.png") right center no-repeat; }
   .arrow-back {
-    background: url("../img/frontend/arrow_right_min.png") right center no-repeat;
+    background: url("../../img/frontend/arrow_right_min.png") right center no-repeat;
     width: 17%; }
   .minus {
     height: 12px;
@@ -427,11 +427,11 @@ a {
       width: 60px;
       height: 60px; }
   .block_contact {
-    background: url("../img/frontend/contact_bg_min.png") no-repeat;
+    background: url("../../img/frontend/contact_bg_min.png") no-repeat;
     background-size: 600px auto;
     background-position: right bottom; }
   .block_about {
-    background: url("../img/frontend/about_bg_min.png") no-repeat;
+    background: url("../../img/frontend/about_bg_min.png") no-repeat;
     background-size: 600px auto;
     background-position: left top; }
   .about-info {
@@ -468,15 +468,17 @@ a {
   html {
     height: initial; }
   body {
-    padding-top: 25px;
     background-color: #fff;
     font-size: 15px; }
   .normal {
     display: none; }
   .mob {
     display: block; }
+    .mob-about-page {
+      background: url("../../img/frontend/content_bg.jpg") center repeat;
+      background-size: contain; }
     .mob-header {
-      padding: 20px; }
+      padding: 50px 20px 20px 20px; }
       .mob-header img {
         float: right;
         width: 70px;
@@ -495,14 +497,9 @@ a {
       padding: 20px; }
     .mob-block_about {
       min-height: 300px;
-      display: table;
-      background: url("../img/frontend/content_bg.jpg") center repeat;
-      background-size: contain; }
+      display: table; }
     .mob-block_contact {
-      display: table;
-      margin-top: 30px;
-      background: url("../img/frontend/content_bg.jpg") center repeat;
-      background-size: contain; }
+      display: table; }
     .mob-about_desc {
       display: table-cell;
       vertical-align: middle;
@@ -527,8 +524,10 @@ a {
         float: left;
         width: 50%;
         text-align: center; }
-    .mob-block_project, .mob-block_subject {
-      padding-top: 130px; }
+    .mob-project-header, .mob-subject-header {
+      position: static;
+      font-size: 50px;
+      text-align: left; }
     .mob-project-item {
       display: table;
       float: left;
@@ -692,11 +691,7 @@ a {
   .mob-block_header {
     top: 40px; }
     .mob-block_header-about {
-      top: 10px; }
-  .mob-block_project,
-  .mob-block_subject {
-    padding-top: 130px;
-    padding-bottom: 0; } }
+      top: 10px; } }
 
 /* Extra Small Devices, Phones */
 @media only screen and (max-width: 480px) {

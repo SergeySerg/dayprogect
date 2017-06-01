@@ -163,7 +163,7 @@
 
                 <ul class="submenu">
                     @foreach($admin_categories as $admin_category)
-                        <li @if(Request::is('*/'.$admin_category->link.'') || Request::is('*/'.$admin_category->link.'/*')) class="active" @endif>
+                        <li @if(Request::is('*/' . $admin_category->link . '') || Request::is('*/' . $admin_category->link . '/*')) class="active" @endif>
                             <a href="{{ $url }}/articles/{{ $admin_category->link }}" @if($admin_category->active == 0) style="color:#e4e1e1" @endif @if($admin_category->category_children->count()) class="dropdown-toggle" @endif >
                                 <i class="icon-double-angle-right"></i>
                                 {{ $admin_category->getTranslate('title') }}

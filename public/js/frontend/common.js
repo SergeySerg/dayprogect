@@ -72,8 +72,7 @@ $(function(){
 /***********END function for scroll-up gallery item*************/
 
 /***********height screen*************/
-    $('.mob-block_contact').css({height : windowHeight + 'px'});
-    $('.mob-block_about').css({height : (windowHeight - $('.mob-header').css('height').slice(0,-2)) + 'px'});
+    $('.mob-block_about,.mob-block_contact').css({height : (windowHeight - $('.mob-header').css('height').slice(0,-2)) + 'px'});
     $('.header, .footer').css({height : (windowHeight - marTop)/2 + 'px'});
     $('.content').css({'top' : (windowHeight - marTop)/2 + 'px'});
     $('.sidebar_right_wrap').css({'bottom' : (windowHeight - marTop)/2 + 'px'});
@@ -87,6 +86,7 @@ $(function(){
         $('.r-carousel-wrap').css({'opacity':0,'z-index':-1});  // hide all gallery
         $('.arrow').show();                                     //show arrow for page pagination
         $('.arrow-gallery').hide();                             //hide arrow for img pagination in gallery
+        $('.arrow-gallery-up, .arrow-gallery-down').show();
         $('[data-page-num]').removeClass('active');
         var pageNum = $(this).attr('data-page-num');
         if(pageNum == 1){
@@ -152,12 +152,14 @@ $(function(){
         if($('#project-carousel-' + projectId + ' .owl-item:first-child').hasClass('active')){
             $('.arrow-gallery-up').hide();
         };
-        $('.arrow-gallery-down').on('click', function () {
-            scrollGalleryDown();
-        });
-        $('.arrow-gallery-up').on('click', function () {
-            scrollGalleryUp();
-        });
+    });
+
+    $('.arrow-gallery-down').on('click', function () {
+        scrollGalleryDown();
+    });
+
+    $('.arrow-gallery-up').on('click', function () {
+        scrollGalleryUp();
     });
 
     $('.arrow-back').on('click', function () {
@@ -167,6 +169,7 @@ $(function(){
         $(this).hide();
         $('.arrow').show();
         $('.arrow-gallery').hide();
+        $('.arrow-gallery-up, .arrow-gallery-down').show();
     });
 /***********END show gallery*************/
 
@@ -203,9 +206,10 @@ $(function(){
 /**********END scrollTo**************/
     
 /**********Center alignment img in mobile gallery**************/
-    $('img').load(function () {
+    $(window).load(function () {
         $('.mob-gallery-item img').each(function () {
             var imgHeight = $(this).height();
+            console.info(imgHeight);
             var imgMar = (windowHeight - imgHeight)/2;
             $(this).css({'margin-top': imgMar + 'px'});
         });
