@@ -12,7 +12,6 @@ return [
 	| you want to customize your views to better match your application.
 	|
 	*/
-	'main' => 'Головна',
 	'company' => 'About us',
 	'project' => 'Projects',
 	'subject' => 'Subjects',
@@ -20,6 +19,9 @@ return [
 	'about_us' => 'About us',
 	'menu' => 'Menu',
 	'tel' => 'tel.',
+	'down' => 'Next',
+	'up' => 'Prev',
+	'back' => 'Back',
 	'prices' => 'Prices',
 	'download' => 'Download',
 
