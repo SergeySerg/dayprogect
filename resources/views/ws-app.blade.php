@@ -13,12 +13,12 @@
 	<link rel="apple-touch-icon" sizes="72x72" href="{{ asset('/favicon/apple-touch-icon-72x72.png') }}">
 	<link rel="apple-touch-icon" sizes="114x114" href="{{ asset('/favicon/apple-touch-icon-114x114.png') }}">
 
-	<link href="{{ asset('/libs/normalize.css/normalize.css') }}" rel="stylesheet" type="text/css" media="all">
-	<link href="{{ asset('/css/frontend/animate.css') }}" rel="stylesheet" type="text/css" media="all">
-	<link href="{{ asset('/libs//owl-carousel-2/assets/owl.carousel.css') }}" rel="stylesheet" type="text/css" media="all" />
+	<link href="{{ asset('/libs/normalize.css/normalize.min.css') }}" rel="stylesheet" type="text/css" media="all">
+	<link href="{{ asset('/css/frontend/animate.min.css') }}" rel="stylesheet" type="text/css" media="all">
+	<link href="{{ asset('/libs//owl-carousel-2/assets/owl.carousel.min.css') }}" rel="stylesheet" type="text/css" media="all" />
 	<link href="{{ asset('/css/frontend/fonts.css') }}" rel="stylesheet" type="text/css" media="all" />
 	<link href="{{ asset('/css/frontend/font-awesome.min.css') }}" rel="stylesheet" type="text/css" media="all" />
-	<link href="{{ asset('/css/frontend/main.css') }}?ver={{ $version }}" rel="stylesheet" type="text/css" media="all" />
+	<link href="{{ asset('/css/frontend/main.min.css') }}?ver={{ $version }}" rel="stylesheet" type="text/css" media="all" />
 
 </head>
 
@@ -159,7 +159,7 @@
 
 	<script src="{{ asset('/libs/jquery/dist/jquery.min.js') }}"></script>
 	<script src="{{ asset('/libs/owl-carousel-2/owl.carousel.min.js') }}"></script>
-	<script src="{{ asset('/js/frontend/common.js') }}?ver={{ $version }}"></script>
+	<script src="{{ asset('/js/frontend/common.min.js') }}?ver={{ $version }}"></script>
 
 	{{-- JS --}}
 </body>
