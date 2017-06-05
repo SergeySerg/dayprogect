@@ -2,11 +2,10 @@
 <html lang="{{ App::getLocale() }}">
 <head>
 	<meta charset="utf-8">
-	<title>DayProject</title>
+	<title>{!! $company->getTranslate('meta_title') !!}</title>
 
-	{{--	<title>@if($categories_data[$type]->getTranslate('meta_title')){{ $categories_data[$type]->getTranslate('meta_title') }} @else DayProject @endif</title>
-        <meta name="description" content="@if($categories_data[$type]->getTranslate('meta_description')){{ $categories_data[$type]->getTranslate('meta_description') }} @else ДЕНЬ project - проект вашого простору @endif">
-        <meta name="keywords" content="@if($categories_data[$type]->getTranslate('meta_keywords')){{ $categories_data[$type]->getTranslate('meta_keywords') }} @else DayProject @endif">--}}
+	<meta name="description" content="{!! $company->getTranslate('meta_description') !!}">
+	<meta name="keywords" content="{!! $company->getTranslate('meta_keywords') !!}">
 
 	<link rel="shortcut icon" href="{{ asset('/favicon/favicon.ico') }}" type="image/x-icon">
 	<link rel="apple-touch-icon" href="{{ asset('/favicon/apple-touch-icon.png') }}">
@@ -23,6 +22,7 @@
 </head>
 
 <body>
+
 	<div class="normal">
 		<header class="header clearfix">
 			<div class="wrapper">
