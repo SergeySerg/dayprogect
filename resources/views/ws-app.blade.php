@@ -125,10 +125,38 @@
 
 		<div class="sidebar sidebar_left">
 			<ul class="nav">
-				<li><a href="#" data-page-num="1" class="nav_item"><img src="/img/frontend/pro_nas.png" alt=""></a></li>
-				<li><a href="#" data-page-num="2" class="nav_item active"><img src="/img/frontend/proekty.png" alt=""></a></li>
-				<li><a href="#" data-page-num="3" class="nav_item"><img src="/img/frontend/predmety.png" alt=""></a></li>
-				<li><a href="#" data-page-num="4" class="nav_item"><img src="/img/frontend/contact.png" alt=""></a></li>
+				<li><a href="#" data-page-num="1" class="nav_item">
+						@if(App::getLocale() == 'ua')
+							<img src="/img/frontend/pro_nas.png" alt="">
+						@else
+							<img src="/img/frontend/pro_nas_en.png" alt="">
+						@endif
+					</a>
+				</li>
+				<li><a href="#" data-page-num="2" class="nav_item active">
+						@if(App::getLocale() == 'ua')
+							<img src="/img/frontend/proekty.png" alt="">
+						@else
+							<img src="/img/frontend/proekty_en.png" alt="">
+						@endif
+					</a>
+				</li>
+				<li><a href="#" data-page-num="3" class="nav_item">
+						@if(App::getLocale() == 'ua')
+							<img src="/img/frontend/predmety.png" alt="">
+						@else
+							<img src="/img/frontend/predmety_en.png" alt="">
+						@endif
+					</a>
+				</li>
+				<li><a href="#" data-page-num="4" class="nav_item">
+						@if(App::getLocale() == 'ua')
+							<img src="/img/frontend/contact.png" alt="">
+						@else
+							<img src="/img/frontend/contact_en.png" alt="">
+						@endif
+					</a>
+				</li>
 			</ul>
 		</div>
 
