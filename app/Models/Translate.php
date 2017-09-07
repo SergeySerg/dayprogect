@@ -12,11 +12,9 @@ class Translate extends Model {
         if(!$lang){
             $lang = App::getLocale();
         }
-/*        if ($lang == 'ua')
-            $field = $pieces[0];*/
         if ($lang == 'ua')
             $field = $pieces[0];
-        if ($lang == 'en')
+        if ($lang == 'ru')
             $field = $pieces[1];
         return $field;
     }
@@ -31,11 +29,9 @@ class Translate extends Model {
             if(!$lang){
                 $lang = App::getLocale();
             }
-        /*  if ($lang == 'ua')
-                $field = $pieces[0];*/
             if ($lang == 'ua')
                 $field = $pieces[0];
-            if ($lang == 'en')
+            if ($lang == 'ru')
                 $field = $pieces[1];
             return $field;
         }

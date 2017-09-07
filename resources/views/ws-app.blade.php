@@ -17,7 +17,8 @@
 	<link href="{{ asset('/libs//owl-carousel-2/assets/owl.carousel.min.css') }}" rel="stylesheet" type="text/css" media="all" />
 	<link href="{{ asset('/css/frontend/fonts.css') }}" rel="stylesheet" type="text/css" media="all" />
 	<link href="{{ asset('/css/frontend/font-awesome.min.css') }}" rel="stylesheet" type="text/css" media="all" />
-	<link href="{{ asset('/css/frontend/main.min.css') }}?ver={{ $version }}" rel="stylesheet" type="text/css" media="all" />
+	<link href="{{ asset('/css/plugins/sweetalert.css') }}" rel="stylesheet" type="text/css" media="all" />
+	<link href="{{ asset('/css/frontend/main.css') }}?ver={{ $version }}" rel="stylesheet" type="text/css" media="all" />
 
 </head>
 
@@ -27,8 +28,9 @@
 		<header class="header clearfix">
 			<div class="wrapper">
 				<ul class="lang">
-					<li class="lang_item"><a @if(App::getLocale() == 'en')class="active"@endif href="{{str_replace(url(App::getLocale()), url('en'), Request::url())}}">eng</a></li>
-					<li class="lang_item"><a  @if(App::getLocale() == 'ua')class="active"@endif href="{{str_replace(url(App::getLocale()), url('ua'), Request::url())}}">ukr</a></li>			</ul>
+					<li class="lang_item"><a @if(App::getLocale() == 'ru')class="active"@endif href="{{str_replace(url(App::getLocale()), url('ru'), Request::url())}}">rus</a></li>
+					<li class="lang_item"><a  @if(App::getLocale() == 'ua')class="active"@endif href="{{str_replace(url(App::getLocale()), url('ua'), Request::url())}}">ukr</a></li>
+				</ul>
 				<a href="#" class="logo" data-page-num="2"><img src="{{ asset('/img/frontend/logo.png') }}" alt="DayProject"></a>
 			</div>
 		</header>
@@ -62,16 +64,16 @@
 						</div>
 					@endforeach
 				</div>
-				@if(count($subject) == 1)
+				@if(count($news) == 1)
 					<div class="block-content block_subject">
-						<div class="project-item" data-id="s1" style="background-image: url('{{ asset( $subject->getAttributeTranslate('Картинка предмета')) }}');">
-							<div class="project-item_name">
-								<span class="project-item_name-text">{{ $subject->getTranslate('title') }}</span>
+						<div class="project-item  news-item" data-id="s1" style="background-image: url('{{ asset( $news->getAttributeTranslate('Картинка предмета')) }}');">
+							<div class="project-item_name news-item_name">
+								<span class="project-item_name-text news-item_name-text">{{ $news->getTranslate('title') }}</span>
 							</div>
 						</div>
 						<div id="project-carousel-s1" class="r-carousel-wrap">
 							<div class="owl-carousel owl-theme">
-								@foreach($subject->getImages() as $imgSrc)
+								@foreach($news->getImages() as $imgSrc)
 									<div class="gallery-item">
 										<img src="/{{ $imgSrc['full'] }}" alt="">
 									</div>
@@ -81,17 +83,17 @@
 					</div>
 				@else
 					<div class="block-content block_subject">
-						@foreach($subject as $subject_item)
-							<div class="project-item" data-id="s{{ $subject_item->id }}" style="background-image: url('{{ asset( $subject_item->getAttributeTranslate('Картинка предмета')) }}');">
+						@foreach($news as $news_item)
+							<div class="project-item news-item" data-id="s{{ $news_item->id }}" style="background-image: url('{{ asset( $subject_item->getAttributeTranslate('Картинка предмета')) }}');">
 								<div class="project-item_name">
-									<span class="project-item_name-text">{{ $subject_item->getTranslate('title') }}</span>
+									<span class="project-item_name-text">{{ $news_item->getTranslate('title') }}</span>
 								</div>
 							</div>
 						@endforeach
-						@foreach($subject as $subject_item)
-							<div id="project-carousel-s{{ $subject_item->id }}" class="r-carousel-wrap">
+						@foreach($news as $news_item)
+							<div id="project-carousel-s{{ $news_item->id }}" class="r-carousel-wrap">
 								<div class="owl-carousel owl-theme">
-									@foreach($subject_item->getImages() as $imgSrc)
+									@foreach($news_item->getImages() as $imgSrc)
 										<div class="gallery-item">
 											<img src="/{{ $imgSrc['full'] }}" alt="">
 										</div>
@@ -107,6 +109,13 @@
 							{{ $texts->get('address') }}<br>
 							{{ trans('base.tel')}}: {{ $texts->get('telephone') }} <br>
 							{{ $texts->get('email') }}  <br>
+							<form action="" id="contact-callback" method="post">
+								<input type="text" name="name" placeholder="{{ trans('base.name') }}">
+								<input type="email" name="email" placeholder="{{ trans('base.mail') }}">
+								<textarea rows="8" name="text" placeholder="{{ trans('base.message') }}"></textarea>
+								<input type="hidden" name="_token" value="{{csrf_token()}}"/>
+								<button type="submit" id="send" class="btn btn__blue">{{ trans('base.send') }}</button>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -129,7 +138,7 @@
 						@if(App::getLocale() == 'ua')
 							<img src="/img/frontend/pro_nas.png" alt="">
 						@else
-							<img src="/img/frontend/pro_nas_en.png" alt="">
+							<img src="/img/frontend/pro_nas_ru.png" alt="">
 						@endif
 					</a>
 				</li>
@@ -137,15 +146,15 @@
 						@if(App::getLocale() == 'ua')
 							<img src="/img/frontend/proekty.png" alt="">
 						@else
-							<img src="/img/frontend/proekty_en.png" alt="">
+							<img src="/img/frontend/proekty_ru.png" alt="">
 						@endif
 					</a>
 				</li>
 				<li><a href="#" data-page-num="3" class="nav_item">
 						@if(App::getLocale() == 'ua')
-							<img src="/img/frontend/predmety.png" alt="">
+							<img src="/img/frontend/news.png" alt="">
 						@else
-							<img src="/img/frontend/predmety_en.png" alt="">
+							<img src="/img/frontend/news_ru.png" alt="">
 						@endif
 					</a>
 				</li>
@@ -153,7 +162,7 @@
 						@if(App::getLocale() == 'ua')
 							<img src="/img/frontend/contact.png" alt="">
 						@else
-							<img src="/img/frontend/contact_en.png" alt="">
+							<img src="/img/frontend/contact_ru.png" alt="">
 						@endif
 					</a>
 				</li>
@@ -184,11 +193,18 @@
 	</div>
 
 	{{-- JS --}}
-
+	{{--Файл переводов--}}
+	<script>
+		var trans = {
+			'base.success': '{{ trans('base.success_send_contact') }}',
+			'base.error': '{{ trans('base.error_send_contact') }}',
+		};
+	</script>
+	{{--Файл переводов--}}
 	<script src="{{ asset('/libs/jquery/dist/jquery.min.js') }}"></script>
 	<script src="{{ asset('/libs/owl-carousel-2/owl.carousel.min.js') }}"></script>
-	<script src="{{ asset('/js/frontend/common.min.js') }}?ver={{ $version }}"></script>
-
+	<script src="{{ asset('/js/plugins/sweetalert.min.js') }}"></script>
+	<script src="{{ asset('/js/frontend/common.js') }}?ver={{ $version }}"></script>
 	{{-- JS --}}
 </body>
 </html>

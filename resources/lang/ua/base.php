@@ -18,7 +18,7 @@ return [
 	'project' => 'Проекти',
 	'subject' => 'Предмети',
 	'menu' => 'Меню',
-	'tel' => 'тел.',
+	'mail' => 'Email',
 	'down' => 'Вниз',
 	'up' => 'Вгору',
 	'back' => 'Назад',
@@ -44,7 +44,7 @@ return [
 	'map' => 'Ми на карті',
 	'cal' => 'зворотній',
 	'connection' => 'зв\'язок',
-	'name' => 'Ваше імя',
+	'name' => 'Ім\'я',
 	'message' => 'Повідомлення',
 	'callback_ring' => 'Зворотній зв\'язок',
 
@@ -53,7 +53,6 @@ return [
 	'about_us' => 'Про нас',
 	'prices' => 'Ціни',
 	'download' => 'Завантаження',
-	'contacts' => 'Контакти',
 	'our_benefits' => 'Наші переваги',
 	'our_priced' => 'Наші ціни',
 	'home' => 'Головна',
@@ -67,7 +66,5 @@ return [
 	/* /Script Contact*/
 	/*Callback*/
 	'your_name' => 'Ваше ім\'я',
-	'message' => 'Повідомлення',
-	'send' => 'Надіслати',
 	/*/Callback*/
 ];

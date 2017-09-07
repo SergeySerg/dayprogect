@@ -6,10 +6,7 @@
   padding: 0; }
 
 html {
-  height: 100%;
-  background: url("../../img/frontend/body_bg.jpg") center no-repeat;
-  background-size: cover;
-  background-position: left bottom; }
+  height: 100%;}
 
 a {
   text-decoration: none;
@@ -272,9 +269,11 @@ a {
   width: 100%;
   height: 100%; }
 
-.block_about {
+.block_about,
+.block_contact{
   display: table;
-  background: url("../../img/frontend/about_bg.png") 50px top no-repeat; }
+  background: url("../../img/frontend/bg.jpg") right top no-repeat;
+  background-size: 50% 100%;}
 
 .about_desc {
   display: table-cell;
@@ -286,12 +285,10 @@ a {
 
 .block_project {
   position: relative;
-  width: 100%;
-  background: url("../../img/frontend/project_bg.png") 75% 35% no-repeat; }
+  width: 100%;}
 
 .block_subject {
-  width: 100%;
-  background: url("../../img/frontend/subject_bg.png") 75% 60% no-repeat; }
+  width: 100%;}
 
 .project-item {
   display: table;
@@ -329,6 +326,27 @@ a {
       -webkit-transition: all .5s ease;
       transition: all .5s ease; }
 
+.news-item{
+  width: 100%;}
+.news-item:hover .news-item_name{
+  background-color: rgba(37, 37, 37, 1); }
+  .news-item_name{
+    float: right;
+    width: auto;
+    height: 25px;
+    margin: 90px 10% 0 0;
+    padding: 0 10%;
+    background-color: rgba(37, 37, 37, .6);
+    text-align: center;
+    opacity: 1;}
+    .news-item_name-text{
+      position: relative;
+      bottom: 0;
+      left: 0;
+      top: 2px;
+      font-size: 18px;
+      color: #ffffff; }
+
 .r-carousel-wrap {
   position: absolute;
   top: 0;
@@ -345,17 +363,40 @@ a {
       max-height: 630px;
       margin: 0 auto; }
 
-.block_contact {
-  display: table;
-  background: url("../../img/frontend/contact_bg.png") 60px top no-repeat; }
-
-.contact_desc {
-  display: table-cell;
-  vertical-align: middle; }
+/*.contact_desc {*/
+  /*display: table-cell;*/
+  /*vertical-align: middle; }*/
 
 .contact-info {
-  width: 190px;
-  margin: 0 auto; }
+  width: 50%;
+  padding: 20% 6% 0 6%;
+  float: right; }
+
+#contact-callback{
+  margin-top: 15%; }
+  #contact-callback input{
+    height: 30px;
+    width: 100%;
+    border: none;
+    margin-bottom: 22px;
+    padding-left: 10px; }
+  #contact-callback textarea{
+    width: 100%;
+    height: 130px;
+    border: none;
+    margin-bottom: 32px;
+    padding-left: 10px;
+    padding-top: 13px; }
+  #contact-callback button{
+    float: right;
+    width: 85px;
+    height: 18px;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    background-color: #262626;
+    text-align: center;
+    cursor: pointer; }
 
 .block2 {
   background: yellow; }
@@ -426,14 +467,6 @@ a {
     .logo img {
       width: 60px;
       height: 60px; }
-  .block_contact {
-    background: url("../../img/frontend/contact_bg_min.png") no-repeat;
-    background-size: 600px auto;
-    background-position: right bottom; }
-  .block_about {
-    background: url("../../img/frontend/about_bg_min.png") no-repeat;
-    background-size: 600px auto;
-    background-position: left top; }
   .block_project,
   .block_subject {
     background-size: 41%; }
@@ -450,6 +483,17 @@ a {
         bottom: 10px;
         left: 10px;
         font-size: 12px; }
+  .news-item_name {
+    width: auto;
+    height: 25px;
+    margin-top: 62px;}
+    .news-item_name-text {
+      position: relative;
+      bottom: 0;
+      left: 0;
+      top: 2px;
+      font-size: 18px;
+      color: #ffffff; }
   .pagination li {
     margin-top: 5px; }
   .arrow {
@@ -463,14 +507,22 @@ a {
     height: 80px;
     margin-bottom: 75px; }
     .arrow-gallery li:first-child {
-      margin-bottom: 40px; } }
+      margin-bottom: 40px; }
+  .contact-info{
+    padding-top: 12%;  }
+  #contact-callback{
+    margin-top: 20%; }
+    #contact-callback input{
+      height: 25px;
+      margin-bottom: 15px; }
+    #contact-callback textarea{
+      height: 100px;
+      border: none;
+      margin-bottom: 20px; } }
 
 /* Large Devices, Wide Screens */
 /* Medium Devices, Desktops */
 @media only screen and (max-width: 992px), only screen and (max-height: 600px) {
-  html {
-    background: #fff url("../../img/frontend/body_bg_mob.jpg") center no-repeat;
-    background-size: cover; }
   body {
     background: none;
     position: relative; }

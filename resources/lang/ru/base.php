@@ -42,9 +42,10 @@ return [
 	'map' => 'Мы на карте',
 	'cal' => 'обратная',
 	'connection' => 'связь',
-	'name' => 'Ваше имя',
+	'name' => 'Имя',
 	'message' => 'Сообщение',
 	'callback_ring' => 'Обратный звонок',
+	'mail' => 'Email',
 
 
 
@@ -52,7 +53,6 @@ return [
 	'about_us' => 'О нас',
 	'prices' => 'Цены',
 	'download' => 'Загрузки',
-	'contacts' => 'Контакты',
 	'our_benefits' => 'Наши преимущества',
 	'our_priced' => 'Наши цены',
 	'home' => 'Главная',
@@ -66,8 +66,6 @@ return [
 	/* /Script Contact*/
 	/*Callback*/
 	'your_name' => 'Ваше имя',
-	'message' => 'Сообщение',
-	'send' => 'Отправить',
 	'error' => 'Ошибка подключения'
 	/*/Callback*/
 ];

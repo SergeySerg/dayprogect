@@ -18,7 +18,7 @@ return [
 	'contacts' => 'Contacts',
 	'about_us' => 'About us',
 	'menu' => 'Menu',
-	'tel' => 'tel.',
+	'mail' => 'Email',
 	'down' => 'Next',
 	'up' => 'Prev',
 	'back' => 'Back',
