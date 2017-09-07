@@ -46,6 +46,7 @@ return [
 	'message' => 'Сообщение',
 	'callback_ring' => 'Обратный звонок',
 	'mail' => 'Email',
+	'order' => 'Связатся с нами',
 
 
 

@@ -14,7 +14,8 @@
 
 	<link href="{{ asset('/libs/normalize.css/normalize.min.css') }}" rel="stylesheet" type="text/css" media="all">
 	<link href="{{ asset('/css/frontend/animate.min.css') }}" rel="stylesheet" type="text/css" media="all">
-	<link href="{{ asset('/libs//owl-carousel-2/assets/owl.carousel.min.css') }}" rel="stylesheet" type="text/css" media="all" />
+	<link href="{{ asset('/libs/owl-carousel-2/assets/owl.carousel.min.css') }}" rel="stylesheet" type="text/css" media="all" />
+	<link href="{{ asset('/libs/jquery.bxslider/jquery.bxslider.min.css') }}" rel="stylesheet" type="text/css" media="all" />
 	<link href="{{ asset('/css/frontend/fonts.css') }}" rel="stylesheet" type="text/css" media="all" />
 	<link href="{{ asset('/css/frontend/font-awesome.min.css') }}" rel="stylesheet" type="text/css" media="all" />
 	<link href="{{ asset('/css/plugins/sweetalert.css') }}" rel="stylesheet" type="text/css" media="all" />
@@ -72,31 +73,41 @@
 							</div>
 						</div>
 						<div id="project-carousel-s1" class="r-carousel-wrap">
-							<div class="owl-carousel owl-theme">
+							<div class="news-text">
+								<h2 class="news-text_name">{{ $news->getTranslate('title') }}</h2>
+								<div class="news-text_description">{!! $news->getTranslate('description') !!}</div>
+								<button class="order">{{ trans('base.order')}}</button>
+							</div>
+							<div class="news-img">
 								@foreach($news->getImages() as $imgSrc)
-									<div class="gallery-item">
-										<img src="/{{ $imgSrc['full'] }}" alt="">
-									</div>
+									<div class="img-wrap" style="background-image: url('/{{ $imgSrc['full'] }}')" alt=""></div>
 								@endforeach
 							</div>
 						</div>
 					</div>
 				@else
 					<div class="block-content block_subject">
-						@foreach($news as $news_item)
-							<div class="project-item news-item" data-id="s{{ $news_item->id }}" style="background-image: url('{{ asset( $subject_item->getAttributeTranslate('Картинка предмета')) }}');">
-								<div class="project-item_name">
-									<span class="project-item_name-text">{{ $news_item->getTranslate('title') }}</span>
+						<ul class="bxslider">
+							@foreach($news as $news_item)
+							<li>
+								<div class="project-item news-item" data-id="s{{ $news_item->id }}" style="background-image: url('{{asset( $news_item->getAttributeTranslate('Картинка предмета')) }}');">
+									<div class="project-item_name news-item_name">
+										<span class="project-item_name-text news-item_name-text">{{ $news_item->getTranslate('title') }}</span>
+									</div>
 								</div>
-							</div>
-						@endforeach
+							</li>
+							@endforeach
+						</ul>
 						@foreach($news as $news_item)
 							<div id="project-carousel-s{{ $news_item->id }}" class="r-carousel-wrap">
-								<div class="owl-carousel owl-theme">
+								<div class="news-text">
+									<h2 class="news-text_name">{{ $news_item->getTranslate('title') }}</h2>
+									<div class="news-text_description">{!! $news_item->getTranslate('description') !!}</div>
+									<button class="order">{{ trans('base.order')}}</button>
+								</div>
+								<div class="news-img">
 									@foreach($news_item->getImages() as $imgSrc)
-										<div class="gallery-item">
-											<img src="/{{ $imgSrc['full'] }}" alt="">
-										</div>
+										<div class="img-wrap" style="background-image: url('/{{ $imgSrc['full'] }}')" alt=""></div>
 									@endforeach
 								</div>
 							</div>
@@ -178,6 +189,10 @@
 					<li class="arrow-gallery-up" title="{{ trans('base.up')}}"></li>
 					<li class="arrow-gallery-down" title="{{ trans('base.down')}}"></li>
 				</ul>
+				<ul class="arrow-news">
+					<li class="arrow-news-up" title="{{ trans('base.up')}}"></li>
+					<li class="arrow-news-down" title="{{ trans('base.down')}}"></li>
+				</ul>
 				<ul class="arrow">
 					<li class="arrow-up" title="{{ trans('base.up')}}"></li>
 					<li class="arrow-down" title="{{ trans('base.down')}}"></li>
@@ -203,6 +218,7 @@
 	{{--Файл переводов--}}
 	<script src="{{ asset('/libs/jquery/dist/jquery.min.js') }}"></script>
 	<script src="{{ asset('/libs/owl-carousel-2/owl.carousel.min.js') }}"></script>
+	<script src="{{ asset('/libs/jquery.bxslider/jquery.bxslider.min.js') }}"></script>
 	<script src="{{ asset('/js/plugins/sweetalert.min.js') }}"></script>
 	<script src="{{ asset('/js/frontend/common.js') }}?ver={{ $version }}"></script>
 	{{-- JS --}}
