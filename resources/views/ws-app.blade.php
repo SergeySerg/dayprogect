@@ -66,7 +66,8 @@
 					@endforeach
 				</div>
 				@if(count($news) == 1)
-					<div class="block-content block_subject">
+					@yield('page')
+					{{--<div class="block-content block_subject">
 						<div class="project-item  news-item" data-id="s1" style="background-image: url('{{ asset( $news->getAttributeTranslate('Картинка предмета')) }}');">
 							<div class="project-item_name news-item_name">
 								<span class="project-item_name-text news-item_name-text">{{ $news->getTranslate('title') }}</span>
@@ -84,17 +85,19 @@
 								@endforeach
 							</div>
 						</div>
-					</div>
+					</div>--}}
 				@else
 					<div class="block-content block_subject">
 						<ul class="bxslider">
 							@foreach($news as $news_item)
 							<li>
-								<div class="project-item news-item" data-id="s{{ $news_item->id }}" style="background-image: url('{{asset( $news_item->getAttributeTranslate('Картинка предмета')) }}');">
-									<div class="project-item_name news-item_name">
-										<span class="project-item_name-text news-item_name-text">{{ $news_item->getTranslate('title') }}</span>
+								<a href="/{{App::getLocale()}}/news/{{ $news_item->id }}">
+									<div class="project-item news-item" data-id="s{{ $news_item->id }}" style="background-image: url('{{asset( $news_item->getAttributeTranslate('Картинка предмета')) }}');">
+										<div class="project-item_name news-item_name">
+											<span class="project-item_name-text news-item_name-text">{{ $news_item->getTranslate('title') }}</span>
+										</div>
 									</div>
-								</div>
+								</a>
 							</li>
 							@endforeach
 						</ul>
@@ -124,6 +127,7 @@
 								<input type="text" name="name" placeholder="{{ trans('base.name') }}">
 								<input type="email" name="email" placeholder="{{ trans('base.mail') }}">
 								<textarea rows="8" name="text" placeholder="{{ trans('base.message') }}"></textarea>
+								<input type="hidden" name="url" value="{{App::getLocale()}}/contact"/>
 								<input type="hidden" name="_token" value="{{csrf_token()}}"/>
 								<button type="submit" id="send" class="btn btn__blue">{{ trans('base.send') }}</button>
 							</form>

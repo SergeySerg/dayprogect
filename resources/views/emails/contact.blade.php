@@ -25,7 +25,7 @@
     </tr>
     <tr>
         <td style="border-bottom: 1px solid #e0e0e0; border-right: 1px solid #e0e0e0; padding: 7px 17px;">Телефон</td>
-        <td style="border-bottom: 1px solid #e0e0e0; padding: 7px 17px;">{{ $phone }}</td>
+        <td style="border-bottom: 1px solid #e0e0e0; padding: 7px 17px;">{{ $email }}</td>
     </tr>
     <tr>
         <td style="border-bottom: 1px solid #e0e0e0; border-right: 1px solid #e0e0e0; background: #fafafa;  padding: 7px 17px;">Сообщение</td>

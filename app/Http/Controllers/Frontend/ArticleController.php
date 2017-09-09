@@ -31,20 +31,9 @@ class ArticleController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index($lang, $type = 'company')
+	public function index($lang)
 	{
-//dd($type);
-		/*$static_page = Category::where('link', $type)
-			->first()
-			->articles()
-			->activearticles() // use scopeActiveArticles in Article Model
-			->get();
-		dd($static_page);*/
-		//dd($type);
-		//dump($news);
-		//dd($video->category()->first()->active);
-		return view('frontend.' . $type);
-
+		return view('ws-app');
 	}
 
 	/**
@@ -55,16 +44,11 @@ class ArticleController extends Controller {
 	 */
 	public function show($lang, $type, $id)
 	{
-		//dd('23w2');
-		/*$static_page = Category::where('link', $type)
-		->first()
-		->articles()
-		->where('id', $id)
-		->activearticles() // use scopeActiveArticles in Article Model
-		->first();
-		view()->share('static_page', $static_page);*/
-
-		return view('frontend.' . $type);
+		$article = Article::where('id',$id)->first();
+		//dd($article);
+			return view('frontend.page', [
+				'static_page' => $article
+			]);
 
 	}
 
@@ -131,7 +115,7 @@ class ArticleController extends Controller {
 			/*make rules for validation*/
 			$rules = [
 				'name' => 'required|max:50',
-				'phone' => 'required|numeric',
+				'email' => 'email',
 				'text' => 'required|max:600'
 			];
 
@@ -149,7 +133,7 @@ class ArticleController extends Controller {
 			//Send item on admin email address
 			Mail::send('emails.contact', $all, function($message){
 				$email = getSetting('config.email');
-				$message->to($email, 'Gidrobud')->subject('Сообщение с сайта "Gidrobud"');
+				$message->to($email, 'Dayproject')->subject('Сообщение с сайта "Dayproject"');
 			});
 			return response()->json([
 				'success' => 'true'

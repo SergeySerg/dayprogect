@@ -59,7 +59,7 @@ class FrontendInit {
 			//share Article
 			view()->share($category->link, $category_item);
 		}
-		Debugbar::addMeasure('time', LARAVEL_START, microtime(true));
+		//Debugbar::addMeasure('time', LARAVEL_START, microtime(true));
 		//dd($categories_data->article->get());
 
 		// Share to views global template variables

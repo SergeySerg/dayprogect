@@ -318,7 +318,7 @@
 
                             @endforeach
 
-                            @if(isset($admin_category))
+                            {{--@if(isset($admin_category))
                                 <h4 class="header green clearfix">
                                     Gallery
                                 </h4>
@@ -339,7 +339,7 @@
                                     {{ trans('backend.form_gallery') }}
                                     <br>
                                 </div>
-                            @endif
+                            @endif--}}
 
                         </div>
                     </div>
