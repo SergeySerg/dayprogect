@@ -16,10 +16,10 @@
 	<link href="{{ asset('/css/frontend/animate.min.css') }}" rel="stylesheet" type="text/css" media="all">
 	<link href="{{ asset('/libs/owl-carousel-2/assets/owl.carousel.min.css') }}" rel="stylesheet" type="text/css" media="all" />
 	<link href="{{ asset('/libs/jquery.bxslider/jquery.bxslider.min.css') }}" rel="stylesheet" type="text/css" media="all" />
-	<link href="{{ asset('/css/frontend/fonts.css') }}" rel="stylesheet" type="text/css" media="all" />
+	<link href="{{ asset('/css/frontend/fonts.min.css') }}" rel="stylesheet" type="text/css" media="all" />
 	<link href="{{ asset('/css/frontend/font-awesome.min.css') }}" rel="stylesheet" type="text/css" media="all" />
 	<link href="{{ asset('/css/plugins/sweetalert.css') }}" rel="stylesheet" type="text/css" media="all" />
-	<link href="{{ asset('/css/frontend/main.css') }}?ver={{ $version }}" rel="stylesheet" type="text/css" media="all" />
+	<link href="{{ asset('/css/frontend/main.min.css') }}?ver={{ $version }}" rel="stylesheet" type="text/css" media="all" />
 
 </head>
 
@@ -65,33 +65,11 @@
 						</div>
 					@endforeach
 				</div>
-				@if(count($news) == 1)
-					@yield('page')
-					{{--<div class="block-content block_subject">
-						<div class="project-item  news-item" data-id="s1" style="background-image: url('{{ asset( $news->getAttributeTranslate('Картинка предмета')) }}');">
-							<div class="project-item_name news-item_name">
-								<span class="project-item_name-text news-item_name-text">{{ $news->getTranslate('title') }}</span>
-							</div>
-						</div>
-						<div id="project-carousel-s1" class="r-carousel-wrap">
-							<div class="news-text">
-								<h2 class="news-text_name">{{ $news->getTranslate('title') }}</h2>
-								<div class="news-text_description">{!! $news->getTranslate('description') !!}</div>
-								<button class="order">{{ trans('base.order')}}</button>
-							</div>
-							<div class="news-img">
-								@foreach($news->getImages() as $imgSrc)
-									<div class="img-wrap" style="background-image: url('/{{ $imgSrc['full'] }}')" alt=""></div>
-								@endforeach
-							</div>
-						</div>
-					</div>--}}
-				@else
 					<div class="block-content block_subject">
 						<ul class="bxslider">
 							@foreach($news as $news_item)
 							<li>
-								<a href="/{{App::getLocale()}}/news/{{ $news_item->id }}">
+								<a class="news-link" href="/{{App::getLocale()}}/news/{{ $news_item->id }}">
 									<div class="project-item news-item" data-id="s{{ $news_item->id }}" style="background-image: url('{{asset( $news_item->getAttributeTranslate('Картинка предмета')) }}');">
 										<div class="project-item_name news-item_name">
 											<span class="project-item_name-text news-item_name-text">{{ $news_item->getTranslate('title') }}</span>
@@ -101,23 +79,8 @@
 							</li>
 							@endforeach
 						</ul>
-						@foreach($news as $news_item)
-							<div id="project-carousel-s{{ $news_item->id }}" class="r-carousel-wrap">
-								<div class="news-text">
-									<h2 class="news-text_name">{{ $news_item->getTranslate('title') }}</h2>
-									<div class="news-text_description">{!! $news_item->getTranslate('description') !!}</div>
-									<button class="order">{{ trans('base.order')}}</button>
-								</div>
-								<div class="news-img">
-									@foreach($news_item->getImages() as $imgSrc)
-										<div class="img-wrap" style="background-image: url('/{{ $imgSrc['full'] }}')" alt=""></div>
-									@endforeach
-								</div>
-							</div>
-						@endforeach
 					</div>
-				@endif
-				<div class="block-content block_contact">
+				<div id="contact" class="block-content block_contact">
 					<div class="contact_desc">
 						<div class="contact-info">
 							{{ $texts->get('address') }}<br>
@@ -149,7 +112,8 @@
 
 		<div class="sidebar sidebar_left">
 			<ul class="nav">
-				<li><a href="#" data-page-num="1" class="nav_item">
+				<li>
+					<a href="#" data-page-num="1" class="nav_item">
 						@if(App::getLocale() == 'ua')
 							<img src="/img/frontend/pro_nas.png" alt="">
 						@else
@@ -157,7 +121,8 @@
 						@endif
 					</a>
 				</li>
-				<li><a href="#" data-page-num="2" class="nav_item active">
+				<li>
+					<a href="#" data-page-num="2" class="nav_item">
 						@if(App::getLocale() == 'ua')
 							<img src="/img/frontend/proekty.png" alt="">
 						@else
@@ -165,7 +130,8 @@
 						@endif
 					</a>
 				</li>
-				<li><a href="#" data-page-num="3" class="nav_item">
+				<li>
+					<a href="#" data-page-num="3" class="nav_item">
 						@if(App::getLocale() == 'ua')
 							<img src="/img/frontend/news.png" alt="">
 						@else
@@ -173,7 +139,8 @@
 						@endif
 					</a>
 				</li>
-				<li><a href="#" data-page-num="4" class="nav_item">
+				<li>
+					<a href="#" data-page-num="4" class="nav_item">
 						@if(App::getLocale() == 'ua')
 							<img src="/img/frontend/contact.png" alt="">
 						@else
@@ -211,6 +178,89 @@
 		</div>
 	</div>
 
+	<div class="r-normal" style="display: none;">
+		<header class="header clearfix">
+			<div class="wrapper">
+				<ul class="lang">
+					<li class="lang_item"><a @if(App::getLocale() == 'ru')class="active"@endif href="{{str_replace(url(App::getLocale()), url('ru'), Request::url())}}">rus</a></li>
+					<li class="lang_item"><a  @if(App::getLocale() == 'ua')class="active"@endif href="{{str_replace(url(App::getLocale()), url('ua'), Request::url())}}">ukr</a></li>
+				</ul>
+				<a href="/{{ App::getLocale() }}" class="logo"><img src="{{ asset('/img/frontend/logo.png') }}" alt="DayProject"></a>
+			</div>
+		</header>
+
+		<div class="content">
+			<div class="r-content-wrap">
+				@yield('page')
+			</div>
+		</div>
+
+		<footer class="footer">
+			<div class="wrapper">
+				<ul class="soc">
+					@foreach($social as $social_item)
+						<li class="soc_item"><a href="{{ $social_item->getAttributeTranslate('Ссилка') }}" target="_blank">{{ $social_item->getTranslate('title') }}</a></li>
+					@endforeach
+				</ul>
+			</div>
+		</footer>
+
+		<div class="sidebar sidebar_left">
+			<ul class="nav">
+				<li>
+					<a href="/{{ App::getLocale() }}#about-us" class="nav_item">
+						@if(App::getLocale() == 'ua')
+							<img src="/img/frontend/pro_nas.png" alt="">
+						@else
+							<img src="/img/frontend/pro_nas_ru.png" alt="">
+						@endif
+					</a>
+				</li>
+				<li>
+					<a href="/{{ App::getLocale() }}#projects" class="nav_item">
+						@if(App::getLocale() == 'ua')
+							<img src="/img/frontend/proekty.png" alt="">
+						@else
+							<img src="/img/frontend/proekty_ru.png" alt="">
+						@endif
+					</a>
+				</li>
+				<li>
+					<a href="/{{ App::getLocale() }}#news" class="nav_item active">
+						@if(App::getLocale() == 'ua')
+							<img src="/img/frontend/news.png" alt="">
+						@else
+							<img src="/img/frontend/news_ru.png" alt="">
+						@endif
+					</a>
+				</li>
+				<li>
+					<a href="/{{ App::getLocale() }}#contact" class="nav_item">
+						@if(App::getLocale() == 'ua')
+							<img src="/img/frontend/contact.png" alt="">
+						@else
+							<img src="/img/frontend/contact_ru.png" alt="">
+						@endif
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="sidebar sidebar_right">
+			<div class="sidebar_right_wrap">
+				<div class="r-arrow-back_wrap clearfix">
+					<a href="/{{ App::getLocale() }}#news" class="r-arrow-back" title="{{ trans('base.back')}}"></a>
+				</div>
+				<ul class="pagination">
+					<li><a href="#" data-page-num="1" class="pag_item"><i class="minus"></i><span class="page-num">01</span></a></li>
+					<li><a href="#" data-page-num="2" class="pag_item"><i class="minus"></i><span class="page-num active">02</span></a></li>
+					<li><a href="#" data-page-num="3" class="pag_item active"><i class="minus"></i><span class="page-num">03</span></a></li>
+					<li><a href="#" data-page-num="4" class="pag_item"><i class="minus"></i><span class="page-num">04</span></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
 	{{-- JS --}}
 	{{--Файл переводов--}}
 	<script>
@@ -224,7 +274,7 @@
 	<script src="{{ asset('/libs/owl-carousel-2/owl.carousel.min.js') }}"></script>
 	<script src="{{ asset('/libs/jquery.bxslider/jquery.bxslider.min.js') }}"></script>
 	<script src="{{ asset('/js/plugins/sweetalert.min.js') }}"></script>
-	<script src="{{ asset('/js/frontend/common.js') }}?ver={{ $version }}"></script>
+	<script src="{{ asset('/js/frontend/common.min.js') }}?ver={{ $version }}"></script>
 	{{-- JS --}}
 </body>
 </html>
