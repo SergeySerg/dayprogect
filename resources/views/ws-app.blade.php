@@ -2,10 +2,10 @@
 <html lang="{{ App::getLocale() }}">
 <head>
 	<meta charset="utf-8">
-	<title>{!! $company->getTranslate('meta_title') !!}</title>
+	<title>@if(isset($static_page)){!! $static_page->getTranslate('meta_title') !!}@elseif(isset($company)){{ $company->getTranslate('meta_title') }}@endif</title>
 
-	<meta name="description" content="{!! $company->getTranslate('meta_description') !!}">
-	<meta name="keywords" content="{!! $company->getTranslate('meta_keywords') !!}">
+	<meta name="description" content="@if(isset($static_page)){!! $static_page->getTranslate('meta_description') !!}@elseif(isset($company)){{ $company->getTranslate('meta_description') }}@endif">
+	<meta name="keywords" content="@if(isset($static_page)){!! $static_page->getTranslate('meta_keywords') !!}@elseif(isset($company)){{ $company->getTranslate('meta_keywords') }}@endif">
 
 	<link rel="shortcut icon" href="{{ asset('/favicon/favicon.ico') }}" type="image/x-icon">
 	<link rel="apple-touch-icon" href="{{ asset('/favicon/apple-touch-icon.png') }}">
@@ -19,7 +19,7 @@
 	<link href="{{ asset('/css/frontend/fonts.min.css') }}" rel="stylesheet" type="text/css" media="all" />
 	<link href="{{ asset('/css/frontend/font-awesome.min.css') }}" rel="stylesheet" type="text/css" media="all" />
 	<link href="{{ asset('/css/plugins/sweetalert.css') }}" rel="stylesheet" type="text/css" media="all" />
-	<link href="{{ asset('/css/frontend/main.min.css') }}?ver={{ $version }}" rel="stylesheet" type="text/css" media="all" />
+	<link href="{{ asset('/css/frontend/main.css') }}?ver={{ $version }}" rel="stylesheet" type="text/css" media="all" />
 
 </head>
 
