@@ -344,7 +344,8 @@ a {
     margin: 0 auto;
     margin-top: 50px;
     vertical-align: bottom;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(80, 77, 74, 0.8);
+    color: #ffffff;
     overflow: hidden;
     text-overflow: ellipsis;
     opacity: 0;
@@ -503,8 +504,7 @@ a {
     padding-top: 13px; }
   #contact-callback button{
     float: right;
-    width: 85px;
-    height: 18px;
+    padding: 4px 10px;
     border: none;
     color: #fff;
     font-size: 14px;
