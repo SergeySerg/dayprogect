@@ -24,6 +24,23 @@
 </head>
 
 <body>
+<script>
+	(function(i,s,o,g,r,a,m){
+		i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},
+		i[r].l=1*new Date();
+		a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];
+		a.async=1;
+		a.src=g;
+		m.parentNode.insertBefore(a,m)
+	})
+	(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-107019729-1', 'auto');
+	ga('send', 'pageview');
+
+</script>
 
 	<div class="normal">
 		<header class="header clearfix">
@@ -203,6 +220,7 @@
 					@endforeach
 				</ul>
 			</div>
+
 		</footer>
 
 		<div class="sidebar sidebar_left">
@@ -274,7 +292,7 @@
 	<script src="{{ asset('/libs/owl-carousel-2/owl.carousel.min.js') }}"></script>
 	<script src="{{ asset('/libs/jquery.bxslider/jquery.bxslider.min.js') }}"></script>
 	<script src="{{ asset('/js/plugins/sweetalert.min.js') }}"></script>
-	<script src="{{ asset('/js/frontend/common.min.js') }}?ver={{ $version }}"></script>
+	<script src="{{ asset('/js/frontend/common.js') }}?ver={{ $version }}"></script>
 	{{-- JS --}}
 </body>
 </html>

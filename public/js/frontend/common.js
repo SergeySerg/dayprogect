@@ -16,6 +16,17 @@ $(function(){
     $('.sidebar_right_wrap').css({'bottom' : (windowHeight - marTop)/2 + 'px'});
     /***********END height screen*************/
 
+    /**********Change img in menu**************/
+
+    if(windowHeight <= 900 ||  windowWidth <= 1200){
+        $('.nav img, .logo img').each(function () {
+            var imgSrc = $(this).attr('src').slice(0,-4) + '_min.png';
+            $(this).attr('src', imgSrc);
+        });
+    };
+    
+    /**********END change img in menu**************/
+    
     /**********Remove start page**************/
     if (url[2] == 'news'){
         $('.normal').remove();
@@ -275,17 +286,6 @@ $(function(){
             $('.button-menu .icon').toggleClass('menu-i').toggleClass('close');
         });
         /***********END adaptive menu*************/
-
-        /**********Change img in menu**************/
-        
-        if(windowHeight <= 900 ||  windowWidth <= 1200){
-            $('.nav img').each(function () {
-                var imgSrc = $(this).attr('src').slice(0,-4) + '_min.png';
-                $(this).attr('src', imgSrc);
-            });
-        };
-        
-        /**********END change img in menu**************/
         
         /***********Owl-carousel*************/
         $(".owl-carousel").owlCarousel({

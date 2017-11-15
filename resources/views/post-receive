@@ -1,0 +1,12 @@
+#!/bin/sh
+
+### checkout to develop branch in current directory /home/nick/ttd2_deploy
+GIT_WORK_TREE=/var/www/socnetwork/socnetwork_server git checkout -f dev
+
+cd /var/www/socnetwork/socnetwork_server
+
+### run webpack to build clients scripts
+node run app.js
+
+### reload ttd2 process using pm2 (the ttd2 process id in pm2 list is 0)
+#pm2 reload 0

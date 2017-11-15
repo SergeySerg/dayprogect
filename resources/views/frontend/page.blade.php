@@ -2,7 +2,7 @@
 @section('page')
     <div class="block-content block_subject">
         <div class="news-text">
-            <h2 class="news-text_name">{{ $static_page->getTranslate('title') }}</h2>
+            <h1 class="news-text_name">{{ $static_page->getTranslate('title') }}</h1>
             <div class="news-text_description">{!! $static_page->getTranslate('description') !!}</div>
             <a href="/{{ App::getLocale() }}#contact" class="order">{{ trans('base.order')}}</a>
         </div>
