@@ -172,14 +172,14 @@ $(function(){
             $('.arrow-news-down').on("click", function () {
                 $('.bx-next').trigger("click");
                 $('.arrow-news-up').show();
-                if(!$(".bx-slider").is("li:last-child[aria-hidden = 'false']")){
+                if($('#bxslider').find('li:last-child').attr('aria-hidden') == 'false'){
                     $(this).hide();
                 };
             });
             $('.arrow-news-up').on("click", function () {
                 $('.bx-prev').trigger("click");
                 $('.arrow-news-down').show();
-                if(!$(".bx-slider").is("li:first-child[aria-hidden = 'false']")){
+                if($('#bxslider').find('li:first-child').attr('aria-hidden') == 'false'){
                     $('.arrow-news-up').hide();
                 };
             });

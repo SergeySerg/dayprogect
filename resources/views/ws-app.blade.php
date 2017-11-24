@@ -83,7 +83,7 @@
 					@endforeach
 				</div>
 					<div class="block-content block_subject">
-						<ul class="bxslider">
+						<ul id="bxslider" class="bxslider">
 							@foreach($news as $news_item)
 							<li>
 								<a class="news-link" href="/{{App::getLocale()}}/news/{{ $news_item->id }}">
