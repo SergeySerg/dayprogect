@@ -292,7 +292,7 @@
 	<script src="{{ asset('/libs/owl-carousel-2/owl.carousel.min.js') }}"></script>
 	<script src="{{ asset('/libs/jquery.bxslider/jquery.bxslider.min.js') }}"></script>
 	<script src="{{ asset('/js/plugins/sweetalert.min.js') }}"></script>
-	<script src="{{ asset('/js/frontend/common.js') }}?ver={{ $version }}"></script>
+	<script src="{{ asset('/js/frontend/common.min.js') }}?ver={{ $version }}"></script>
 	{{-- JS --}}
 </body>
 </html>
